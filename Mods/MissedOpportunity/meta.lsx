@@ -7,6 +7,13 @@
         <node id="Dependencies">
           <children>
             <node id="ModuleShortDesc">
+              <attribute id="Folder" type="LSString" value="ScriptExtender"/>
+              <attribute id="MD5" type="LSString" value=""/>
+              <attribute id="Name" type="LSString" value="Script Extender"/>
+              <attribute id="UUID" type="FixedString" value="67fbbd53-7c7d-4cfa-9409-6d737b4d92a9"/>
+              <attribute id="Version64" type="int64" value="36028797018963968"/>
+            </node>
+            <node id="ModuleShortDesc">
               <attribute id="Folder" type="LSString" value="Grimoire"/>
               <attribute id="MD5" type="LSString" value=""/>
               <attribute id="Name" type="LSString" value="Grimoire"/>
