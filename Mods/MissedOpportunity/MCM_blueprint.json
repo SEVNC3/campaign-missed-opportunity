@@ -1,0 +1,336 @@
+{
+  "$schema": "https://raw.githubusercontent.com/AtilioA/BG3-MCM/main/.vscode/schema.json",
+  "SchemaVersion": 1,
+  "ModName": "Missed Opportunity",
+  "Tabs": [
+    {
+      "TabId": "core_settings",
+      "TabName": "Core Settings",
+      "Sections": [
+        {
+          "SectionId": "enable_disable",
+          "SectionName": "Enable/Disable",
+          "Settings": [
+            {
+              "Id": "enable_mod",
+              "Name": "Enable Missed Opportunity",
+              "Type": "checkbox",
+              "Default": true,
+              "Description": "Master toggle for the entire mod",
+              "Tooltip": "When disabled, no retaliations will trigger on critical misses"
+            }
+          ]
+        },
+        {
+          "SectionId": "critical_miss",
+          "SectionName": "Critical Miss Settings",
+          "Settings": [
+            {
+              "Id": "critical_miss_chance",
+              "Name": "Critical Miss Chance (%)",
+              "Type": "slider_int",
+              "Default": 5,
+              "Options": {
+                "Min": 5,
+                "Max": 100
+              },
+              "Description": "Percentage chance for critical miss (5% = natural 1 only)",
+              "Tooltip": "5% matches D&D natural 1. Higher values make critical misses more common.",
+              "VisibleIf": {
+                "Conditions": [
+                  {
+                    "SettingId": "enable_mod",
+                    "Operator": "==",
+                    "ExpectedValue": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "SectionId": "participant_filters",
+          "SectionName": "Who Can Retaliate",
+          "Settings": [
+            {
+              "Id": "enable_for_player",
+              "Name": "Player Characters",
+              "Type": "checkbox",
+              "Default": true,
+              "Description": "Allow player-controlled characters to retaliate",
+              "Tooltip": "Includes main character and companions",
+              "VisibleIf": {
+                "Conditions": [
+                  {
+                    "SettingId": "enable_mod",
+                    "Operator": "==",
+                    "ExpectedValue": true
+                  }
+                ]
+              }
+            },
+            {
+              "Id": "enable_for_allies",
+              "Name": "Allied NPCs",
+              "Type": "checkbox",
+              "Default": true,
+              "Description": "Allow allied NPCs to retaliate",
+              "Tooltip": "Includes summoned creatures and friendly NPCs",
+              "VisibleIf": {
+                "Conditions": [
+                  {
+                    "SettingId": "enable_mod",
+                    "Operator": "==",
+                    "ExpectedValue": true
+                  }
+                ]
+              }
+            },
+            {
+              "Id": "enable_for_enemies",
+              "Name": "Enemies",
+              "Type": "checkbox",
+              "Default": true,
+              "Description": "Allow enemies to retaliate",
+              "Tooltip": "When your characters miss, enemies can strike back!",
+              "VisibleIf": {
+                "Conditions": [
+                  {
+                    "SettingId": "enable_mod",
+                    "Operator": "==",
+                    "ExpectedValue": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TabId": "retaliation_types",
+      "TabName": "Retaliation Types",
+      "Sections": [
+        {
+          "SectionId": "melee_options",
+          "SectionName": "Melee Range (≤2m)",
+          "Settings": [
+            {
+              "Id": "enable_blade_cantrips",
+              "Name": "Blade Cantrips",
+              "Type": "checkbox",
+              "Default": true,
+              "Description": "Allow Booming Blade and Green-Flame Blade (highest priority)",
+              "Tooltip": "These trigger first if available and caster is not silenced",
+              "VisibleIf": {
+                "Conditions": [
+                  {
+                    "SettingId": "enable_mod",
+                    "Operator": "==",
+                    "ExpectedValue": true
+                  }
+                ]
+              }
+            },
+            {
+              "Id": "enable_melee_weapons",
+              "Name": "Melee Weapons",
+              "Type": "checkbox",
+              "Default": true,
+              "Description": "Allow equipped weapon attacks (main hand/offhand)",
+              "Tooltip": "Uses equipped weapons for retaliation",
+              "VisibleIf": {
+                "Conditions": [
+                  {
+                    "SettingId": "enable_mod",
+                    "Operator": "==",
+                    "ExpectedValue": true
+                  }
+                ]
+              }
+            },
+            {
+              "Id": "enable_natural_attacks",
+              "Name": "Natural Attacks",
+              "Type": "checkbox",
+              "Default": true,
+              "Description": "Allow natural weapons (claws, bites, etc.)",
+              "Tooltip": "For creatures with natural weapons like bears, wolves, etc.",
+              "VisibleIf": {
+                "Conditions": [
+                  {
+                    "SettingId": "enable_mod",
+                    "Operator": "==",
+                    "ExpectedValue": true
+                  }
+                ]
+              }
+            },
+            {
+              "Id": "enable_unarmed",
+              "Name": "Unarmed Attacks",
+              "Type": "checkbox",
+              "Default": true,
+              "Description": "Allow unarmed strikes as fallback",
+              "Tooltip": "Used when no other melee options are available",
+              "VisibleIf": {
+                "Conditions": [
+                  {
+                    "SettingId": "enable_mod",
+                    "Operator": "==",
+                    "ExpectedValue": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "SectionId": "ranged_options",
+          "SectionName": "Ranged (2-18m)",
+          "Settings": [
+            {
+              "Id": "enable_ranged_weapons",
+              "Name": "Ranged Weapons",
+              "Type": "checkbox",
+              "Default": true,
+              "Description": "Allow ranged weapon attacks",
+              "Tooltip": "Bows, crossbows, thrown weapons, etc.",
+              "VisibleIf": {
+                "Conditions": [
+                  {
+                    "SettingId": "enable_mod",
+                    "Operator": "==",
+                    "ExpectedValue": true
+                  }
+                ]
+              }
+            },
+            {
+              "Id": "enable_offensive_cantrips",
+              "Name": "Offensive Cantrips",
+              "Type": "checkbox",
+              "Default": true,
+              "Description": "Allow offensive cantrips (Fire Bolt, Eldritch Blast, etc.)",
+              "Tooltip": "Only if caster is not silenced",
+              "VisibleIf": {
+                "Conditions": [
+                  {
+                    "SettingId": "enable_mod",
+                    "Operator": "==",
+                    "ExpectedValue": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TabId": "advanced",
+      "TabName": "Advanced",
+      "Sections": [
+        {
+          "SectionId": "range_settings",
+          "SectionName": "Range Configuration",
+          "Settings": [
+            {
+              "Id": "melee_range",
+              "Name": "Melee Range (meters)",
+              "Type": "slider_int",
+              "Default": 2,
+              "Options": {
+                "Min": 1,
+                "Max": 5
+              },
+              "Description": "Maximum distance for melee retaliations",
+              "Tooltip": "Default: 2m (standard BG3 melee range)",
+              "VisibleIf": {
+                "Conditions": [
+                  {
+                    "SettingId": "enable_mod",
+                    "Operator": "==",
+                    "ExpectedValue": true
+                  }
+                ]
+              }
+            },
+            {
+              "Id": "ranged_max",
+              "Name": "Ranged Maximum (meters)",
+              "Type": "slider_int",
+              "Default": 18,
+              "Options": {
+                "Min": 5,
+                "Max": 30
+              },
+              "Description": "Maximum distance for ranged retaliations",
+              "Tooltip": "Default: 18m (standard cantrip range)",
+              "VisibleIf": {
+                "Conditions": [
+                  {
+                    "SettingId": "enable_mod",
+                    "Operator": "==",
+                    "ExpectedValue": true
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "SectionId": "debug_settings",
+          "SectionName": "Debug Options",
+          "Settings": [
+            {
+              "Id": "enable_debug",
+              "Name": "Enable Debug Logging",
+              "Type": "checkbox",
+              "Default": false,
+              "Description": "Log retaliation events to console",
+              "Tooltip": "Press F11 to open console and see debug output"
+            },
+            {
+              "Id": "debug_level",
+              "Name": "Debug Level",
+              "Type": "enum",
+              "Default": "INFO",
+              "Options": {
+                "Choices": ["ERROR", "WARNING", "INFO", "DEBUG", "TRACE"]
+              },
+              "Description": "Set debug verbosity level",
+              "Tooltip": "ERROR: Errors only | INFO: General info | DEBUG: Detailed | TRACE: Everything",
+              "VisibleIf": {
+                "Conditions": [
+                  {
+                    "SettingId": "enable_debug",
+                    "Operator": "==",
+                    "ExpectedValue": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "TabId": "about",
+      "TabName": "About",
+      "Settings": [
+        {
+          "Id": "version_info",
+          "Name": "Missed Opportunity v2.0.0",
+          "Type": "text",
+          "Default": "Critical miss retaliation system powered by Grimoire library. Turn failures into opportunities! When anyone rolls a natural 1, their target can strike back with weapons, blade cantrips, or spells.",
+          "Description": "Created by SEVNCE | Requires Grimoire library | Fully configurable via MCM",
+          "Tooltip": "Visit Nexus Mods for updates and support",
+          "Options": {
+            "Multiline": true
+          }
+        }
+      ]
+    }
+  ]
+}

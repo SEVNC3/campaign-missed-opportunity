@@ -1,0 +1,18 @@
+{
+  "BG3 Interrupt": {
+    "prefix": "bg3interrupt",
+    "body": [
+      "new entry \"Interrupt_${1:ModName}_${2:Action}\"",
+      "type \"InterruptData\"",
+      "data \"DisplayName\" \"${3:handle}\"",
+      "data \"Description\" \"${4:handle}\"",
+      "data \"Icon\" \"${5:icon}\"",
+      "data \"InterruptContext\" \"${6:OnCastHit}\"",
+      "data \"InterruptContextScope\" \"Self\"",
+      "data \"Container\" \"YesNoDecision\"",
+      "data \"Conditions\" \"${7:conditions}\"",
+      "data \"Properties\" \"${8:properties}\"",
+      "data \"InterruptDefaultValue\" \"Enabled\""
+    ]
+  }
+}
