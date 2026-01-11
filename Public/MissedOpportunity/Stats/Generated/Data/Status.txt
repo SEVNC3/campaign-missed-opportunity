@@ -1,0 +1,7 @@
+new entry "MISSED_OPPORTUNITY"
+type "StatusData"
+data "StatusType" "BOOST"
+data "TickType" "EndTurn"
+data "RemoveConditions" "IsAttack()"
+data "RemoveEvents" "OnAttacked;OnTurn"
+data "StatusPropertyFlags" "DisableOverhead;DisableCombatlog;DisablePortraitIndicator"
