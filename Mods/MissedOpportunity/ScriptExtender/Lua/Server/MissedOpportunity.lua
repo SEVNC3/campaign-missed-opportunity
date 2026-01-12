@@ -1,7 +1,7 @@
 ---@diagnostic disable: undefined-global
 -- Missed Opportunity v1.0.0
 -- Counterattack on critical misses
--- Uses Grimoire library for utilities
+-- Uses Mods.Grimoire library for utilities
 
 local PASSIVE = "Passive_MissedOpportunity"
 local STATUS = "MISSED_OPPORTUNITY"
@@ -14,21 +14,21 @@ Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(attacker, stat
     if Osi.IsDead(attacker) == 1 then return end
     if Osi.HasActiveStatus(attacker, STATUS) ~= 1 then return end
     
-    -- Check if defender can retaliate (using Grimoire)
-    if not Grimoire.Conditions:CanRetaliate(defender) then
+    -- Check if defender can retaliate (using Mods.Grimoire)
+    if not Mods.Grimoire.Conditions:CanRetaliate(defender) then
         Osi.RemoveStatus(attacker, status, defender)
         return
     end
     
-    local distance = Grimoire.Combat:GetDistance(defender, attacker)
+    local distance = Mods.Grimoire.Combat:GetDistance(defender, attacker)
     local hasAttacked = false
     
     -- Melee range retaliation (within 2 meters)
-    if distance <= Grimoire.Combat.MELEE_RANGE then
+    if distance <= Mods.Grimoire.Combat.MELEE_RANGE then
         
         -- Try blade cantrips first (if can cast)
-        if Grimoire.Conditions:CanCastCantrip(defender) then
-            local hasCantrip, spell = Grimoire.Spells:HasBladeCantrip(defender)
+        if Mods.Grimoire.Conditions:CanCastCantrip(defender) then
+            local hasCantrip, spell = Mods.Grimoire.Spells:HasBladeCantrip(defender)
             if hasCantrip then
                 Osi.UseSpell(defender, spell, attacker)
                 hasAttacked = true
@@ -36,19 +36,19 @@ Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(attacker, stat
         end
         
         -- Try melee weapons
-        if not hasAttacked and Grimoire.Combat:HasMeleeWeapon(defender, "Mainhand") then
-            Grimoire.Combat:UseMainHandAttack(defender, attacker)
+        if not hasAttacked and Mods.Grimoire.Combat:HasMeleeWeapon(defender, "Mainhand") then
+            Mods.Grimoire.Combat:UseMainHandAttack(defender, attacker)
             hasAttacked = true
         end
         
-        if not hasAttacked and Grimoire.Combat:HasMeleeWeapon(defender, "Offhand") then
-            Grimoire.Combat:UseOffHandAttack(defender, attacker)
+        if not hasAttacked and Mods.Grimoire.Combat:HasMeleeWeapon(defender, "Offhand") then
+            Mods.Grimoire.Combat:UseOffHandAttack(defender, attacker)
             hasAttacked = true
         end
         
         -- Try natural melee attacks
         if not hasAttacked then
-            local hasMelee, spell = Grimoire.Spells:HasMeleeAttack(defender)
+            local hasMelee, spell = Mods.Grimoire.Spells:HasMeleeAttack(defender)
             if hasMelee then
                 Osi.UseSpell(defender, spell, attacker)
                 hasAttacked = true
@@ -57,29 +57,29 @@ Ext.Osiris.RegisterListener("StatusApplied", 4, "after", function(attacker, stat
         
         -- Fallback: unarmed attack
         if not hasAttacked then
-            Grimoire.Combat:UseUnarmedAttack(defender, attacker)
+            Mods.Grimoire.Combat:UseUnarmedAttack(defender, attacker)
         end
     
     -- Ranged retaliation (2-18 meters)
-    elseif distance <= Grimoire.Combat.RANGED_MAX then
+    elseif distance <= Mods.Grimoire.Combat.RANGED_MAX then
         
         -- Try ranged weapons first
-        if Grimoire.Combat:HasRangedWeapon(defender, "Mainhand") then
-            Grimoire.Combat:UseRangedMainHandAttack(defender, attacker)
+        if Mods.Grimoire.Combat:HasRangedWeapon(defender, "Mainhand") then
+            Mods.Grimoire.Combat:UseRangedMainHandAttack(defender, attacker)
             hasAttacked = true
-        elseif Grimoire.Combat:HasRangedWeapon(defender, "Offhand") then
-            Grimoire.Combat:UseRangedOffHandAttack(defender, attacker)
+        elseif Mods.Grimoire.Combat:HasRangedWeapon(defender, "Offhand") then
+            Mods.Grimoire.Combat:UseRangedOffHandAttack(defender, attacker)
             hasAttacked = true
         end
         
         -- Try cantrips if no ranged weapon and can cast
-        if not hasAttacked and Grimoire.Conditions:CanCastCantrip(defender) then
-            for _, spell in ipairs(Grimoire.Spells.Cantrips) do
+        if not hasAttacked and Mods.Grimoire.Conditions:CanCastCantrip(defender) then
+            for _, spell in ipairs(Mods.Grimoire.Spells.Cantrips) do
                 if Osi.HasSpell(defender, spell) == 1 then
                     local canCast = true
                     
                     -- Check special range cantrips
-                    local specialRange = Grimoire.Spells:GetCantripRange(spell)
+                    local specialRange = Mods.Grimoire.Spells:GetCantripRange(spell)
                     if specialRange and distance > specialRange then
                         canCast = false
                     end
@@ -130,4 +130,4 @@ Ext.Osiris.RegisterListener("CombatEnded", 1, "after", function(combat)
     end
 end)
 
-_P("[Missed Opportunity] Loaded - using Grimoire library")
+_P("[Missed Opportunity] Loaded - using Mods.Grimoire library")

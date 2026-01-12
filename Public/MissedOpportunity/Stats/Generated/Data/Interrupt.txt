@@ -1,3 +1,6 @@
+// Pattern verified against: X:\Dev\BG3_Unpacked\Shared\Public\Shared\Stats\Generated\Data\Interrupt.txt
+// Reference: Interrupt_Counterspell, Interrupt_BardicInspiration_Attack (Container grouping)
+// Syntax verified: IsCriticalMiss() in Passive.txt, OnCastHit in Interrupt.txt
 new entry "Interrupt_MissedOpportunity"
 type "InterruptData"
 data "DisplayName" "hbc174882g8929g4899gb508g494f38fc35b6;1"
