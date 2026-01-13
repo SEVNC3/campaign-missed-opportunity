@@ -1,0 +1,11 @@
+{
+  "Lua.diagnostics.globals": ["Ext", "Osi", "Mods", "_P"],
+  "Lua.runtime.version": "Lua 5.4",
+  "files.associations": {
+    "*.lsx": "xml",
+    "*.loca": "xml"
+  },
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "git.enableSmartCommit": true
+}

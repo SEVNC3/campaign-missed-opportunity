@@ -1,0 +1,17 @@
+# Campaign: Missed Opportunity - Combat Mod Rules
+
+Reference docs:
+- ../docs/BG3_REFERENCES.md for BG3 syntax
+- ../docs/RULES.md for code standards
+- ../docs/MEMORY.md for context
+- ../docs/PROJECT_CONTEXT.md for project scope
+
+This mod depends on Campaign: Grimoire.
+Code must:
+- Check Grimoire API before implementing
+- Follow BG3 interrupt patterns
+- Include character-only checks
+- Add debug logging with _P()
+- Update meta.lsx dependencies
+
+Response style: In all interactions and commit messages, be concise and sacrifice grammar for the sake of concision.

@@ -1,0 +1,23 @@
+# Build artifacts
+*.pak
+*.pak.meta
+Generated/
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+*.tmp
+*.bak
+*.swp
+*~
+
+# Logs
+*.log
+debug/
