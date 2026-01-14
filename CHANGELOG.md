@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-01-14
+
+### Fixed
+- Fixed "Not Found" tooltips in combat log and reactions panel
+  - Corrected double single quote syntax in Interrupt.txt (`''STATUS''` → `'STATUS'`)
+  - Removed conflicting vanilla `AttackOfOpportunity` passive override from Passive.txt
+  - Moved Localization folder to correct root-level location (was incorrectly nested inside `Mods/`)
+- Interrupt now properly displays "Retaliation" with description "Attack an enemy when they Critically Miss."
+
+### Changed
+- Simplified Passive.txt to only contain hidden `Passive_MissedOpportunity`
+- Cleaned up localization file with only required entries
+
+### Technical
+- **Critical Discovery**: Localization folder must be at mod root level (`Localization/`), NOT inside `Mods/ModName/`
+- Stat file string syntax: Use single quotes `'STATUS'`, NOT double single quotes `''STATUS''`
+- Build tool: BG3 Modders Multitool CLI (`-s source -d output.pak -c 2`)
+
 ## [2.1.0] - 2026-01-13
 
 ### Fixed

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentList>
+  <!-- Interrupt: Missed Opportunity DisplayName -->
+  <content contentuid="hbc174882g8929g4899gb508g494f38fc35b6" version="1">Retaliation</content>
+
+  <!-- Interrupt: Missed Opportunity Description -->
+  <content contentuid="hbb7b96cbgf9cfg451dg8a84g84af601a083b" version="1">Attack an enemy when they Critically Miss.</content>
+</contentList>
